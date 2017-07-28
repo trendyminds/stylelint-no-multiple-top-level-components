@@ -1,5 +1,4 @@
 var stylelint = require("stylelint");
-var _ = require("lodash");
 
 var ruleName = "tmi/no-multiple-top-level-components"
 
@@ -23,10 +22,14 @@ module.exports = stylelint.createPlugin(ruleName, function (enabled) {
     var path = result.opts.from.split('/');
     if (path[path.length - 3] !== 'components') { return }
 
-    root.walkRules(function (statement) {
-      if (statement.parent.type === 'root' && _.values(statement.parent.indexes)[0] !== 0) {
-        let selector = statement.selector.slice(1).replace(/,\n(.*)/g, '');
+    var rootCount = 0;
 
+    root.walkRules(function (statement) {
+      if (statement.parent.type === 'root') {
+        rootCount++;
+      }
+
+      if (rootCount > 1) {
         stylelint.utils.report({
           ruleName: ruleName,
           result: result,
@@ -35,6 +38,8 @@ module.exports = stylelint.createPlugin(ruleName, function (enabled) {
         });
       }
     })
+
+    rootCount = 0;
   }
 })
 
