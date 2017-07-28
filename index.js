@@ -29,7 +29,7 @@ module.exports = stylelint.createPlugin(ruleName, function (enabled) {
         rootCount++;
       }
 
-      if (rootCount > 1) {
+      if (rootCount > 1 && statement.parent.type === 'root') {
         stylelint.utils.report({
           ruleName: ruleName,
           result: result,

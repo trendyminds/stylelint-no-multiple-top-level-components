@@ -1,6 +1,6 @@
 {
   "name": "stylelint-no-multiple-top-level-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Warns or errors when using multiple top-level selectors within a component file.",
   "main": "index.js",
   "scripts": {},
