@@ -31,7 +31,7 @@ module.exports = stylelint.createPlugin(ruleName, function (enabled) {
           ruleName: ruleName,
           result: result,
           node: statement,
-          message: `Only one top-level selector should exist in a module stylesheet. If this is a new module move this into its own _${selector}.css file.`
+          message: `Only one top-level selector should exist in a component's stylesheet.`
         });
       }
     })
